@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: white;
+            padding: 60px 80px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            min-width: 400px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #000;
+        }
+
+        .buttons-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px; /* Mengatur jarak antar tombol */
+            height: 50px;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 35px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            background-color: #ff80bf;
+            color: white;
+            text-transform: uppercase;
+            transition: background-color 0.2s, transform 0.2s;
+        }
+
+        #no-btn {
+            z-index: 10;
+        }
+
+        #yes-btn:hover {
+            background-color: #ff4da6;
+            transform: scale(1.1);
+        }
+
+        /* STYLE PESAN POP-UP */
+        #success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+            z-index: 100;
+            text-align: center;
+            min-width: 300px;
+        }
+
+        #success-message h2 { color: #ff4da6; margin-bottom: 10px; }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Will u be my Valentine?</h1>
+        <div class="buttons-wrapper">
+            <button id="yes-btn" onclick="showSuccess()">YES</button>
+            <button id="no-btn" onmouseover="moveButton()">NO</button>
+        </div>
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+    <div id="success-message">
+        <h2>Yay! ❤️</h2>
+        <p>I knew you'd say yes!</p>
+        <button onclick="location.reload()" style="margin-top:20px; font-size: 0.8rem;">RESTART</button>
+    </div>
+
+    <script>
+        function moveButton() {
+            const btn = document.getElementById('no-btn');
+            
+            btn.style.position = 'fixed';
+
+            const padding = 50;
+            const maxX = window.innerWidth - btn.offsetWidth - padding;
+            const maxY = window.innerHeight - btn.offsetHeight - padding;
+
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+        }
+
+        function showSuccess() {
+            document.getElementById('success-message').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
